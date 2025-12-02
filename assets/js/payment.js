@@ -7,8 +7,6 @@ async function loadTransactionSummary() {
 
         const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?OrderID=' + orderIdLoc;
         history.pushState({ path: newUrl }, '', newUrl);
-        // console.error("No bookingID found in URL");
-        return;
     }
 
     try {
@@ -55,9 +53,6 @@ async function loadTransactionSummary() {
     }
 }
 
-// Auto-run when page loads
-document.addEventListener("DOMContentLoaded", loadTransactionSummary);
-
 function renderStatusBadge(status) {
     const statusEl = document.getElementById("summary-status");
 
@@ -85,3 +80,6 @@ function renderStatusBadge(status) {
         statusEl.classList.add("bg-gray-500");
     }
 }
+
+// Auto-run when page loads
+document.addEventListener("DOMContentLoaded", loadTransactionSummary);
