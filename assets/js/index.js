@@ -30,7 +30,6 @@ document.querySelector('#register-btn').addEventListener('click', async function
         }
 
         const data = await response.json();
-        console.log("Payment initiation response:", data);
 
         // Save the course ID
         localStorage.setItem("OrderID", String(data.course_id));
