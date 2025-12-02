@@ -38,6 +38,7 @@ document.querySelector('#register-btn').addEventListener('click', async function
     }
 
     const data = await response.json();
+    console.log("Payment initiation response:", data);
     document.getElementById("submitBooking").textContent = "Please wait...";
     localStorage.setItem("OrderID", String(data.course_id));
     window.location.href = data.success.data.authorization_url;
