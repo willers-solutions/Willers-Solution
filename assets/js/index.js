@@ -21,7 +21,7 @@ document.querySelector('#register-btn').addEventListener('click', async function
   button.disabled = true;                   // Disable the button
 
   try {
-    const response = await fetch("https://api.abittoferry.com/book-trips", {
+    const response = await fetch("https://willers-solutions-backend.onrender.com/buy-course", {
       method: 'POST',
       credentials: 'include', // This ensures cookies (sessions/JWT) are sent
       headers: {
@@ -31,6 +31,7 @@ document.querySelector('#register-btn').addEventListener('click', async function
     });
 
     if (!response.ok) {
+        button.textContent = "Pay ₦15,000 One-Time Fee";
         button.classList.remove('disabled');          // You can style this in CSS
         button.disabled = false;                   // Disable the button
       throw new Error(`Request failed with status ${response.status}`);
@@ -42,6 +43,7 @@ document.querySelector('#register-btn').addEventListener('click', async function
     window.location.href = data.success.data.authorization_url;
 
   } catch (error) {
+        button.textContent = "Pay ₦15,000 One-Time Fee";
         button.classList.remove('disabled');          // You can style this in CSS
         button.disabled = false;                   // Disable the button
     return null;
