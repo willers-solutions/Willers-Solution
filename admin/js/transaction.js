@@ -135,7 +135,7 @@ async function loadTransactions(pageNumber) {
     const params = new URLSearchParams(currentUrl.search);
     if (!pageNumber) pageNumber = params.get("page") || "1";
 
-    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber;
+    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber + "/10";
 
     const requestOptions = {
         method: "GET",
