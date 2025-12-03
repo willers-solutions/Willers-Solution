@@ -135,7 +135,7 @@ async function loadTransactions(pageNumber) {
     const params = new URLSearchParams(currentUrl.search);
     if (!pageNumber) pageNumber = params.get("page") || "1";
 
-    const apiUrl = "https://willers-solutions-backend.onrender.com/transactions-save-refuge/" + pageNumber;
+    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber;
 
     const requestOptions = {
         method: "GET",
@@ -155,7 +155,7 @@ async function loadTransactions(pageNumber) {
         }
 
         renderTransactions(responseData.success);
-        renderPagination(responseData.pagination);
+        // renderPagination(responseData.pagination);
     } catch (error) {
         console.error("Error loading transactions:", error);
     }
