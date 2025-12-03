@@ -196,7 +196,7 @@ function renderTransactions(data) {
                 </td>
                 <td><a href="#!" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#TransactionsViewModal">TXN-${txn.ID}</a></td>
                 <td>${txn.other_name + " " + txn.surn_name}</td>
-                <td>${new Date(txn.created_at).toLocaleDateString()}</td>
+                <td>${new Date(txn.CreatedAt).toLocaleDateString()}</td>
                 <td>₦${txn.amount_paid.toLocaleString()}</td>
                 <td>${txn.payment_method}</td>
                 <td>NYSC Payment</td>
