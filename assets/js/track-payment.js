@@ -4,6 +4,6 @@ document.getElementById("trackForm").addEventListener("submit", function (e) {
     let ref = document.getElementById("refInput").value.trim();
 
     if (ref !== "") {
-        window.location.href = "https://willers-solution.vercel.app/paymentt?OrderID=" + encodeURIComponent(ref);
+        window.location.href = "https://willers-solution.vercel.app/paymentt?reference=" + encodeURIComponent(ref);
     }
 });

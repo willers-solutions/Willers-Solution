@@ -1,14 +1,13 @@
 async function loadTransactionSummary() {
     // Get bookingID from the URL
-    const bookingID = new URLSearchParams(window.location.search).get("OrderID");
-    var orderIdLoc = localStorage.getItem("OrderID");
+    const bookingID = new URLSearchParams(window.location.search).get("reference");
 
-    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?OrderID=' + orderIdLoc;
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?reference=' + bookingID;
     history.pushState({ path: newUrl }, '', newUrl);
 
     try {
         // Make the request
-        const response = await fetch(`https://willers-solutions-backend.onrender.com/get-course-by-reference/${orderIdLoc}`);
+        const response = await fetch(`https://willers-solutions-backend.onrender.com/get-course-by-reference/${bookingID}`);
 
         if (!response.ok) {
             throw new Error("Failed to fetch transaction details");
