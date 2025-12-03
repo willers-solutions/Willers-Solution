@@ -238,17 +238,17 @@ function renderPagination(pagination) {
     const paginationContainer = document.querySelector(".pagination");
     if (!paginationContainer) return;
 
-    const CurrentPage = pagination.page;
-    const TotalPages = pagination.totalPages;
+    const CurrentPage = pagination.CurrentPage;
+    const TotalPages = pagination.TotalPages;
 
-    const PreviousPage = CurrentPage > 1 ? CurrentPage - 1 : 0;
-    const NextPage = CurrentPage < TotalPages ? CurrentPage + 1 : 0;
+    const PreviousPage = pagination.PreviousPage;
+    const NextPage = pagination.NextPage;
 
     let paginationHTML = "";
 
     // Previous
     paginationHTML += `
-        <li class="page-item ${PreviousPage === 0 ? "disabled" : ""}">
+        <li class="page-item ${PreviousPage < 1 ? "disabled" : ""}">
             <a class="page-link" href="javascript:void(0);" onclick="goToPage(${PreviousPage})">Previous</a>
         </li>
     `;
@@ -264,13 +264,14 @@ function renderPagination(pagination) {
 
     // Next
     paginationHTML += `
-        <li class="page-item ${NextPage === 0 ? "disabled" : ""}">
+        <li class="page-item ${NextPage > TotalPages ? "disabled" : ""}">
             <a class="page-link" href="javascript:void(0);" onclick="goToPage(${NextPage})">Next</a>
         </li>
     `;
 
     paginationContainer.innerHTML = paginationHTML;
 }
+
 
 function goToPage(page) {
     if (page <= 0) return;
