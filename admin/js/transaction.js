@@ -203,6 +203,7 @@ function renderTransactions(data) {
                         ${txn.phone}
                     </a>
                 </td>
+                <td>${txn.email}</td>
                 <td>${txn.course}</td>
                 <td><span class="badge bg-${statusInfo.color}-subtle text-${statusInfo.color} py-1 px-2 fs-12">${statusInfo.text}</span></td>
                 <td>
