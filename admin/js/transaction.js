@@ -272,7 +272,6 @@ function renderPagination(pagination) {
     paginationContainer.innerHTML = paginationHTML;
 }
 
-
 function goToPage(page) {
     if (page <= 0) return;
     const url = new URL(window.location.href);
