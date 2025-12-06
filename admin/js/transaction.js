@@ -113,6 +113,8 @@ const data = {
   ]
 };
 
+var fullData;
+
 var NextPageOnLoad;
 var PreviousPageOnLoad;
 var CurrentPageOnLoad;
@@ -175,6 +177,7 @@ async function loadTransactions(pageNumber, courseFilter = "all") {
 
         renderTransactions(responseData.data);
         renderPagination(responseData.pagination);
+        fullData = responseData;
     } catch (error) {
         console.error("Error loading transactions:", error);
     }
@@ -299,3 +302,32 @@ function goToPage(page) {
     loadTransactions(page);
 }
 
+
+const searchInput = document.getElementById("userSearchInput");
+
+searchInput.addEventListener("keyup", function () {
+    const query = this.value.trim();
+    if (query.length >= 2) {
+        // Call a function to search
+        fetchUserSearch(query);
+    } else if (query === "") {
+        // Reload full list when cleared
+        renderTransactions(responseData.data);
+        renderPagination(responseData.pagination);
+    }
+});
+
+async function fetchUserSearch(q) {
+    const url = `https://willers-solutions-backend.onrender.com/search-users?q=${encodeURIComponent(q)}`;
+
+    try {
+        const response = await fetch(url, { method: "GET", credentials: "include" });
+        const data = await response.json();
+
+        if (response.ok) {
+            renderTransactions(data.data); // reuse your table render function
+        }
+    } catch (err) {
+        console.log("Search error:", err);
+    }
+}
