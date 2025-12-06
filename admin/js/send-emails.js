@@ -9,7 +9,8 @@ document.getElementById("courseSelector").addEventListener("change", async funct
         // Fetch course users & CSV
         const response = await fetch(`https://nysc-api.willerssolutions.com/download-course-csv/${encodeURIComponent(selectedCourse)}`, {
             method: "GET",
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: 'include', // set credentials to include cookies
         });
         const result = await response.json();
 
