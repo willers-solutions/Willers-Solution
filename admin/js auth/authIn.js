@@ -11,7 +11,7 @@ function get_auth_status() {
     if (localStorage.getItem('auth') !== 'true') {
         // let's clear auth local storage item
         //  let's log user out the users session has expired
-            
+
         logout();
         // logUserOutIfTokenIsExpired();
         // let's redirect to a non-authenticated page cause the user is not authenticated
@@ -69,8 +69,8 @@ try {
     const response = await fetch(apiUrl, requestOptions);
     
     if (!response.ok) {
-            // alert('an error occurred. Please try again');
-                if (!response.ok) {
+        // alert('an error occurred. Please try again');
+        if (!response.ok) {
         alert('an error occurred. Please try again');
         return;
     }
