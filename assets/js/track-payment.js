@@ -4,6 +4,6 @@ document.getElementById("trackForm").addEventListener("submit", function (e) {
     let ref = document.getElementById("refInput").value.trim();
 
     if (ref !== "") {
-        window.location.href = "https://nysc.willerssolutions.com/paymentt?reference=" + encodeURIComponent(ref);
+        window.location.href = "https://nysc@willerssolutions.com/paymentt?reference=" + encodeURIComponent(ref);
     }
 });
