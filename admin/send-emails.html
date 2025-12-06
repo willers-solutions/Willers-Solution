@@ -5,10 +5,9 @@
 <head>
      <!-- Title Meta -->
      <meta charset="utf-8" />
-    <!-- <script src="js auth/authIn.js"></script> -->
-     <title>Transactions | WILLERS SOLUTIONS</title>
+     <title>Orders | Save Refuge Foundation</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- <meta name="description" content="A fully responsive premium admin dashboard template, NYSC Dashboard Management Admin Template" /> -->
+     <!-- <meta name="description" content="A fully responsive premium admin dashboard template, Orphanage Dashboard Management Admin Template" /> -->
      <meta name="author" content="Techzaa" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -26,34 +25,6 @@
 
      <!-- Theme Config js (Require in all Page) -->
      <script src="assets/js/config.min.js"></script>
-
-          <style>
-          .skeleton-row {
-  background: none !important;
-}
-
-.skeleton-line {
-  background: linear-gradient(
-    90deg,
-    #f6f6f6 25%,
-    #f6f6f6 50%,
-    #f6f6f6 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.2s infinite;
-  margin: 5px 0;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-     </style>
 </head>
 
 <body>
@@ -116,7 +87,7 @@
                                    </a>
                                    <div class="dropdown-menu dropdown-menu-end">
                                         <!-- item-->
-                                        <h6 class="dropdown-header">Welcome Willers Solutions!</h6>
+                                        <h6 class="dropdown-header">Welcome Save Refuge!</h6>
 
                                         <a class="dropdown-item" href="withdraw.html">
                                              <iconify-icon icon="solar:wallet-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Send Funds</span>
@@ -288,7 +259,7 @@
                                    <span class="nav-text">Transactions</span>
                               </a>
                          </li>
-                         
+
                          <li class="nav-item">
                               <a class="nav-link" href="send-emails.html">
                                    <span class="nav-icon">
@@ -317,10 +288,10 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="mb-0 fw-semibold">Transactions</h4>
+                                <h4 class="mb-0 fw-semibold">Orders</h4>
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">NYSC Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Transactions</li>
+                                    <li class="breadcrumb-item active">Orders</li>
                                 </ol>
                             </div>
                         </div>
@@ -328,169 +299,84 @@
                     <!-- ========== Page Title End ========== -->
 
                     <div class="row">
-                         <div class="col-xl-12">
-                              <div class="card">
-                                   <div class="card-header d-flex justify-content-between align-items-center border-bottom">
-                                        <div>
-                                             <h4 class="card-title">All Transactions List</h4>
-                                        </div>
-                                        <div class="dropdown">
-                                             <a href="#" class="dropdown-toggle btn btn-sm btn-outline-light rounded" data-bs-toggle="dropdown" aria-expanded="false">
-                                                  Courses
-                                             </a>
-                                             <div class="dropdown-menu dropdown-menu-end">
-                                                  <a href="#!" class="dropdown-item">All</a>
-                                                  <a href="#!" class="dropdown-item">Customer Support</a>
-                                                  <a href="#!" class="dropdown-item">UI/UX Design</a>
-                                                  <a href="#!" class="dropdown-item">Front End Development</a>
-                                                  <a href="#!" class="dropdown-item">Cyber Security</a>
-                                                  <a href="#!" class="dropdown-item">IT Support</a>
-                                                  <a href="#!" class="dropdown-item">Virtual Assistance</a>
-                                                  <a href="#!" class="dropdown-item">Finance & Accounting</a>
-                                                  <a href="#!" class="dropdown-item">Sales</a>
-                                                  <a href="#!" class="dropdown-item">Human Resources</a>
-                                                  <a href="#!" class="dropdown-item">Data Analysis</a>
-                                                  <a href="#!" class="dropdown-item">Project Management</a>
-                                                  <a href="#!" class="dropdown-item">Business Admin</a>
-                                             </div>
-                                        </div>
-                                   </div>
+                         <div class="col-xl-6 offset-xl-3">
+                         <div class="card">
+                              <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                              <h4 class="card-title mb-0">Send Money</h4>
+                              <span class="badge bg-primary text-white fs-12">Secure Transfer</span>
+                              </div>
 
-                                   <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                             <table class="table align-middle text-nowrap table-hover table-centered mb-0">
-                                                  <thead class="bg-light-subtle">
-                                                       <tr>
-                                                            <th style="width: 20px;">
-                                                                 <div class="form-check">
-                                                                      <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                                      <label class="form-check-label" for="customCheck1"></label>
-                                                                 </div>
-                                                            </th>
-                                                            <th>Transaction ID</th>
-                                                            <th>User</th>
-                                                            <th>Date</th>
-                                                            <th>Amount</th>
-                                                            <th>Phone Number</th>
-                                                            <th>Email</th>
-                                                            <th>Course</th>
-                                                            <th>Status</th>
-                                                            <th>Actions</th>
-                                                       </tr>
-                                                  </thead>
-                                                  <tbody id="transactionTableBody">
-                                                       <!-- Transaction rows will be dynamically inserted here -->
-                                                  </tbody>
-                                             </table>
-                                        </div>
-                                        <!-- end table-responsive -->
+                              <div class="card-body">
+                              <!-- Static receiver info -->
+                              <div class="mb-4">
+                                   <h6 class="fw-semibold mb-2">Recipient Details</h6>
+                                   <div class="bg-light p-3 rounded">
+                                   <p class="mb-1"><strong>Name:</strong> SAVE REFUGE FOUNDATION</p>
+                                   <p class="mb-1"><strong>Account Number:</strong> 1025140863</p>
+                                   <p class="mb-0"><strong>Bank:</strong> United Bank For Africa</p>
                                    </div>
-                                   <div class="card-footer">
-                                        <nav aria-label="Page navigation example">
-                                             <ul class="pagination justify-content-end mb-0">
-                                                  <!-- <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-                                                  <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                                  <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                                  <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                                  <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li> -->
-                                             </ul>
-                                        </nav>
-                                   </div>
+                              </div>
+
+                              <!-- Send money form -->
+                              <form id="sendMoneyForm">
+                              <div class="mb-3">
+                              <label for="amount" class="form-label">Amount (₦)</label>
+                              <input type="number" class="form-control" id="amount" placeholder="Enter amount to send" required>
+                              <small id="chargeDisplay" class="text-muted d-block mt-1">Transaction charge: ₦0.00</small>
+                              </div>
+
+                              <div class="mb-3">
+                              <label for="method" class="form-label">Payment Method</label>
+                              <select class="form-select" id="method" required>
+                                   <option value="">Select payment method</option>
+                                   <option value="bank">Bank Transfer</option>
+                              </select>
+                              </div>
+
+                              <div class="mb-3">
+                              <label for="note" class="form-label">Note (optional)</label>
+                              <textarea class="form-control" id="note" rows="2" placeholder="Add a short note..."></textarea>
+                              </div>
+
+                              <button type="submit" class="btn btn-primary w-100" id="sendBtn" disabled>Send Money</button>
+                              </form>
+
+                              <!-- ✅ Success Popup -->
+                              <div id="successPopup" style="
+                              display:none;
+                              position:fixed;
+                              top:0; left:0;
+                              width:100%; height:100%;
+                              background:rgba(0,0,0,0.6);
+                              align-items:center;
+                              justify-content:center;
+                              z-index:9999;">
+                              <div style="
+                              background:white;
+                              border-radius:15px;
+                              padding:30px;
+                              text-align:center;
+                              max-width:380px;
+                              box-shadow:0 10px 25px rgba(0,0,0,0.2);
+                              ">
+                              <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" 
+                                   alt="Success" style="width:70px;margin-bottom:15px;">
+                              <h3 style="color:#28a745;">Transaction Successful!</h3>
+                              <p>Your money has been sent successfully. Thank you for using our service.</p>
+                              <button onclick="closeSuccessPopup()" style="
+                                   background:#28a745;
+                                   color:white;
+                                   border:none;
+                                   border-radius:8px;
+                                   padding:10px 20px;
+                                   margin-top:10px;
+                                   cursor:pointer;
+                              ">Close</button>
+                              </div>
+                              </div>
+
                               </div>
                          </div>
-
-                    </div>
-                     
-                    <div class="modal fade" id="TransactionsViewModal" tabindex="-1" aria-labelledby="TransactionsViewModalLabel" aria-hidden="true">
-                         <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                   <div class="modal-body">
-                                        <div class="card border-0 mb-0 shadow-none">
-                                             <div class="card-body p-0 pb-3">
-                                                  <div class="d-flex align-items-center gap-3">
-                                                       <a href="#!" class="rounded-circle">
-                                                            <div class="position-relative">
-                                                                 <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle flex-shrink-0 img-thumbnail">
-                                                                 <span class="position-absolute bottom-0 end-0  rounded-circle">
-                                                                      <span class=""><i class="ri-verified-badge-fill fs-18 align-bottom text-primary bg-light rounded-circle"></i></span>
-                                                                 </span>
-                                                            </div>
-                                                       </a>
-                                                       <div>
-                                                            <a href="#!" class="text-dark fw-semibold fs-18">Ray C. Nichols</a>
-                                                            <p class="mb-0">raycnichols@teleworm.us</p>
-                                                       </div>
-                                                       <div class="ms-auto">
-                                                            <span class="badge bg-primary-subtle text-primary py-1 px-2 fs-12">Premium</span>
-                                                       </div>
-                                                  </div>
-                                                  <div class="p-3 bg-primary bg-gradient rounded-4 mt-4 border border-light border-2 shadow-sm">
-                                                       <div class="d-flex align-items-center">
-                                                            <img src="assets/images/chip.png" alt="" class="avatar">
-                                                            <div class="ms-auto">
-                                                                 <img src="assets/images/card/mastercard.svg" alt="" class="avatar">
-                                                            </div>
-                                                       </div>
-                                                       <div class="mt-5">
-
-                                                            <h4 class="text-white d-flex gap-2"><span class="text-white-50">XXXX</span> <span class="text-white-50">XXXX</span> <span class="text-white-50">XXXX</span> 3467</h4>
-                                                       </div>
-                                                       <div class="d-flex align-items-center justify-content-between mt-4">
-                                                            <div>
-                                                                 <p class="text-white-50 mb-2">Holder Name</p>
-                                                                 <h4 class="mb-0 text-white">Ray C. Nichols</h4>
-                                                            </div>
-                                                            <div>
-                                                                 <p class="text-white-50 mb-2">Valid</p>
-                                                                 <h4 class="mb-0 text-white">05/26</h4>
-                                                            </div>
-                                                            <img src="assets/images/contactless-payment.png" alt="" class="img-fluid">
-                                                       </div>
-                                                  </div>
-                                                  <div class="mt-4">
-                                                       <h4 class="text-dark fw-medium">Transactions History (2)</h4>
-                                                       <div class="d-flex align-items-center gap-3 mt-3 border p-2 rounded">
-                                                            <div class="avatar bg-primary bg-opacity-10 rounded">
-                                                                 <iconify-icon icon="solar:square-transfer-horizontal-bold" class="fs-28 text-primary avatar-title"></iconify-icon>
-                                                            </div>
-                                                            <div>
-                                                                 <p class="mb-1 text-dark fw-medium fs-15">Michael A. Miner</p>
-                                                                 <p class="text-muted mb-0">michaelminer@dayrep.com</p>
-                                                            </div>
-                                                            <div class="ms-auto">
-                                                                 <p class="mb-1 fs-16 text-dark fw-medium">$13,987 <span><i class="ri-checkbox-circle-line text-success ms-1"></i></span></p>
-                                                                 <p class="mb-0 fs-13">TXN-341220</p>
-                                                            </div>
-                                                       </div>
-                                                       <div class="d-flex align-items-center gap-3 mt-3 border p-2 rounded">
-                                                            <div class="avatar bg-primary bg-opacity-10 rounded">
-                                                                 <iconify-icon icon="solar:square-transfer-horizontal-bold" class="fs-28 text-primary avatar-title"></iconify-icon>
-                                                            </div>
-                                                            <div>
-                                                                 <p class="mb-1 text-dark fw-medium fs-15">Theresa T. Brose</p>
-                                                                 <p class="text-muted mb-0">theresbrosea@dayrep.com</p>
-                                                            </div>
-                                                            <div class="ms-auto">
-                                                                 <p class="mb-1 fs-16 text-dark fw-medium">$2,710 <span><i class="ri-checkbox-circle-line text-success ms-1"></i></span></p>
-                                                                 <p class="mb-0 fs-13">TXN-836451</p>
-                                                            </div>
-                                                       </div>
-
-                                                  </div>
-                                             </div>
-                                             <div class="card-footer border-top px-1">
-                                                  <div class="d-flex align-items-center justify-content-between">
-                                                       <div>
-                                                            <p class="mb-0 fs-15">Total Amount</p>
-                                                       </div>
-                                                       <div>
-                                                            <p class="mb-0 text-primary fw-semibold fs-16">$16,697</p>
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
                          </div>
                     </div>
 
@@ -502,7 +388,7 @@
                    <div class="container-fluid">
                        <div class="row">
                            <div class="col-12 text-center">
-                               <script>document.write(new Date().getFullYear())</script> &copy; WILLERS SOLUTIONS. Crafted by <iconify-icon icon="solar:hearts-bold-duotone" class="fs-18 align-middle text-danger"></iconify-icon> <a
+                               <script>document.write(new Date().getFullYear())</script> &copy; Save Refuge Foundation. Crafted by <iconify-icon icon="solar:hearts-bold-duotone" class="fs-18 align-middle text-danger"></iconify-icon> <a
                                    href="https://payuee.com" class="fw-bold footer-text" target="_blank">Payuee</a>
                            </div>
                        </div>
@@ -524,7 +410,8 @@
      <!-- App Javascript (Require in all Page) -->
      <script src="assets/js/app.js"></script>
 
-     <script src="js/transaction.js"></script>
+     <!-- order.js code -->
+     <script src="js/withdraw.js"></script>
 
 </body>
 
