@@ -154,7 +154,7 @@ async function loadTransactions(pageNumber, courseFilter = "all") {
     const params = new URLSearchParams(currentUrl.search);
     if (!pageNumber) pageNumber = params.get("page") || "1";
 
-    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber + "/10" + `?course=${encodeURIComponent(courseFilter)}`;
+    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber + "/10" + `/course=${encodeURIComponent(courseFilter)}`;
 
     const requestOptions = {
         method: "GET",
