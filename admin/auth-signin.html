@@ -61,8 +61,13 @@
                                              </div>
 
                                              <div class="mb-1 text-center d-grid">
-                                                  <button id="loginButton1" class="btn btn-danger py-2 fw-medium" type="button">Sign In</button>
+                                                  <button id="loginButton1" class="btn btn-danger py-2 fw-medium" type="button">
+                                                       <span id="btnText">Sign In</span>
+                                                       <span id="loader" class="spinner-border spinner-border-sm d-none"></span>
+                                                  </button>
                                              </div>
+
+                                             <p id="errorMsg" class="text-danger text-center mt-2" style="display: none;"></p>
                                         </form>
                                    </div> <!-- end col -->
                               </div> <!-- end card-body -->
