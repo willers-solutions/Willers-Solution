@@ -1,6 +1,6 @@
 document.getElementById("courseSelector").addEventListener("change", async function() {
     const selectedCourse = this.value;
-    if (!selectedCourse || selectedCourse === "All") {
+    if (!selectedCourse || selectedCourse === "all") {
         resetUI();
         return;
     }
