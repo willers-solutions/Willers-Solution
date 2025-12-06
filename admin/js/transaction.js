@@ -124,11 +124,30 @@ var AllRecordsOnPageLoad;
 
 document.addEventListener('DOMContentLoaded', async function () {
     await loadTransactions();
+    const dropdown = document.getElementById('courseDropdown');
+    
+    dropdown.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dropdown-item')) {
+            e.preventDefault();
+            const selectedCourse = e.target.textContent.trim();
+            
+            // Call your search/pagination with course filter
+            loadTransactions(1, selectedCourse);
+
+            // Optional: update button text to show selected filter
+            document.querySelector('.dropdown-toggle').textContent = selectedCourse;
+        }
+    });
 });
 
-async function loadTransactions(pageNumber) {
+async function loadTransactions(pageNumber, courseFilter) {
     // Clear the table and show skeleton loader
     renderTransactionHistoryLoading();
+
+    if (!courseFilter) {
+        courseFilter = "all";
+        // console.log("Filtering by course:", courseFilter);
+    }
 
     // Get current page from params or default to 1
     const currentUrl = new URL(window.location.href);
