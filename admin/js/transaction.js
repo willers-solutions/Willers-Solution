@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
-async function loadTransactions(pageNumber, courseFilter) {
+async function loadTransactions(pageNumber, courseFilter = "all") {
     // Clear the table and show skeleton loader
     renderTransactionHistoryLoading();
 
@@ -154,7 +154,7 @@ async function loadTransactions(pageNumber, courseFilter) {
     const params = new URLSearchParams(currentUrl.search);
     if (!pageNumber) pageNumber = params.get("page") || "1";
 
-    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber + "/10";
+    const apiUrl = "https://willers-solutions-backend.onrender.com/get-courses/" + pageNumber + "/10" + `?course=${encodeURIComponent(courseFilter)}`;
 
     const requestOptions = {
         method: "GET",
