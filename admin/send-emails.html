@@ -365,9 +365,43 @@
                                         <!-- 📧 Email Broadcast -->
                                         <div class="mt-4">
                                              <label class="form-label fw-bold">Send Email To Registered Students</label>
+
+                                             <!-- Subject -->
+                                             <input type="text" id="emailSubject" class="form-control mb-2" placeholder="Email Subject">
+
+                                             <!-- Email Target Type -->
+                                             <select class="form-select mb-2" id="emailTargetType">
+                                                  <option value="">-- Select Receiver Type --</option>
+                                                  <option value="test">Test Email</option>
+                                                  <option value="course">Send to Course Students</option>
+                                             </select>
+
+                                             <!-- Test Email Input (Hidden by default) -->
+                                             <input type="email" id="testEmailInput" class="form-control mb-2 d-none" placeholder="Enter Test Email">
+
+                                             <!-- Course Selection -->
+                                             <select class="form-select mb-2 d-none" id="courseSelector">
+                                                  <option value="">-- Select Course --</option>
+                                                  <option>Customer Support</option>
+                                                  <option>UI/UX Design</option>
+                                                  <option>Front End Development</option>
+                                                  <option>Cyber Security</option>
+                                                  <option>IT Support</option>
+                                                  <option>Virtual Assistance</option>
+                                                  <option>Finance & Accounting</option>
+                                                  <option>Sales</option>
+                                                  <option>Human Resources</option>
+                                                  <option>Data Analysis</option>
+                                                  <option>Project Management</option>
+                                                  <option>Business Admin</option>
+                                             </select>
+
+                                             <!-- Message -->
                                              <textarea class="form-control mb-2" id="emailMessage" rows="3" placeholder="Type your message..."></textarea>
+
+                                             <!-- Send Button -->
                                              <button class="btn btn-primary w-100" id="sendEmailBtn" disabled>Send Email</button>
-                                        </div>
+                                             </div>
 
                                    </div>
                               </div>
