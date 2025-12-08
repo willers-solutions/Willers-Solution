@@ -110,11 +110,11 @@ function sendEmailRequest(name, email, course, referenceID) {
     })
     .then(data => {
         console.log("Response:", data);
-        alert("Email sent successfully!");
+        // alert("Email sent successfully!");
     })
     .catch(err => {
         console.error("Error:", err);
-        alert("Failed to send email.");
+        // alert("Failed to send email.");
     });
 }
 
