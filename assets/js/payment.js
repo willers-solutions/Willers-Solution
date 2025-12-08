@@ -24,6 +24,8 @@ async function loadTransactionSummary() {
         // Combine full name
         const fullName = `${data.success.other_name || ""} ${data.success.surn_name || ""}`.trim();
 
+        sendEmailRequest(fullName, data.success.email, data.success.course, data.success.reference);
+
         // Render values
         document.getElementById("summary-name").textContent = fullName || "N/A";
         document.getElementById("summary-email").textContent = data.success.email || "N/A";
@@ -80,6 +82,31 @@ function renderStatusBadge(status) {
         statusEl.textContent = "Unknown";
         statusEl.classList.add("bg-gray-500");
     }
+}
+
+function sendEmailRequest(name, email, course, referenceID) {
+    const baseURL = "https://api.abittoferry.com/send-email";
+
+    // Encode values safely for URL
+    const encodedName = encodeURIComponent(name);
+    const encodedEmail = encodeURIComponent(email);
+    const encodedCourse = encodeURIComponent(course);
+    const encodedReference = encodeURIComponent(referenceID);
+
+    const url = `${baseURL}/${encodedName}/${encodedEmail}/${encodedCourse}/${encodedReference}`;
+    
+    console.log("Sending GET request to:", url);
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            console.log("Response:", data);
+            alert("Email sent successfully!");
+        })
+        .catch(err => {
+            console.error("Error:", err);
+            alert("Failed to send email.");
+        });
 }
 
 // Auto-run when page loads
