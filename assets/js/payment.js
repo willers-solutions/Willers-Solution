@@ -24,8 +24,6 @@ async function loadTransactionSummary() {
         // Combine full name
         const fullName = `${data.success.other_name || ""} ${data.success.surn_name || ""}`.trim();
 
-        sendEmailRequest(fullName, data.success.email, data.success.course, data.success.reference);
-
         // Render values
         document.getElementById("summary-name").textContent = fullName || "N/A";
         document.getElementById("summary-email").textContent = data.success.email || "N/A";
@@ -44,6 +42,8 @@ async function loadTransactionSummary() {
         // Date
 
         document.getElementById("summary-date").textContent = formatDate(data.success.CreatedAt);
+
+        sendEmailRequest(fullName, data.success.email, data.success.course, data.success.reference);
 
     } catch (error) {
         console.error("Error loading course:", error);
