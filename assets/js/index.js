@@ -46,3 +46,46 @@ document.querySelector('#register-btn').addEventListener('click', async function
         button.classList.remove('opacity-50', 'cursor-not-allowed');
     }
 });
+
+document.getElementById("loan-form").addEventListener("submit", async function (e) {
+    e.preventDefault(); // stop page reload
+
+    const messageBox = document.getElementById("loan-message");
+    messageBox.classList.remove("hidden");
+    messageBox.textContent = "Submitting your application...";
+    messageBox.style.color = "#333";
+
+    // Collect form data
+    const loanData = {
+        surname: document.getElementById("surname").value.trim(),
+        otherNames: document.getElementById("otherNames").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        loanAmount: document.getElementById("loanAmount").value.trim(),
+        loanPurpose: document.getElementById("loanPurpose").value.trim(),
+        employmentStatus: document.getElementById("employmentStatus").value.trim(),
+        monthlyIncome: document.getElementById("monthlyIncome").value.trim(),
+    };
+
+    try {
+        const response = await fetch("https://nysc-api.willerssolutions.com/loan-apply", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(loanData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            messageBox.textContent = "Your loan application has been submitted successfully!";
+            messageBox.style.color = "green";
+            document.getElementById("loan-form").reset();
+        } else {
+            messageBox.textContent = result.message || "Error: Unable to submit your application.";
+            messageBox.style.color = "red";
+        }
+    } catch (error) {
+        messageBox.textContent = "Network error! Please try again.";
+        messageBox.style.color = "red";
+    }
+});
