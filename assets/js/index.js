@@ -57,8 +57,8 @@ document.getElementById("loan-form").addEventListener("submit", async function (
 
     // Collect form data
     const loanData = {
-        surname: document.getElementById("surname").value.trim(),
-        otherNames: document.getElementById("otherNames").value.trim(),
+        fullName: document.getElementById("fullName").value.trim(),
+        otherNames: document.getElementById("referenceCode").value.trim(),
         email: document.getElementById("email").value.trim(),
         phone: document.getElementById("phone").value.trim(),
         loanAmount: document.getElementById("loanAmount").value.trim(),
