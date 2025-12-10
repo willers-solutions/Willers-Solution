@@ -30,7 +30,7 @@ document.getElementById("courseSelector").addEventListener("change", async funct
         document.getElementById("totalRevenue").textContent = "₦" + totalPay.toLocaleString();
 
         // Enable email button
-        document.getElementById("sendEmailBtn").disabled = false;
+        // document.getElementById("sendEmailBtn").disabled = false;
 
         // Save CSV data temporarily
         window.currentCSV = result.csv;
