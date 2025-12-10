@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const isLoggedIn = localStorage.getItem('auth');
+    // const isLoggedIn = localStorage.getItem('auth');
 
-    if (isLoggedIn === 'true') {
-        // 👇 Redirect automatically if user already logged in
-        window.location.href = "dashboard.html"; // change to your dashboard file
-    }
+    // if (isLoggedIn === 'true') {
+    //     // 👇 Redirect automatically if user already logged in
+    //     window.location.href = "transactions.html"; // change to your dashboard file
+    // }
 
     const loginButton = document.getElementById('loginButton1');
     const btnText = document.getElementById('btnText');
