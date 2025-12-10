@@ -14,8 +14,12 @@ document.getElementById("courseSelector").addEventListener("change", async funct
         });
         const result = await response.json();
 
-        // Render Students Table
-        renderStudents(result.users);
+        if (result.count === 0) {
+            document.getElementById("courseData").textContent = "No students found for this course.";
+        } else {
+            // Render Students Table
+            renderStudents(result.users);
+        }
 
         // Show Stats
         document.getElementById("courseStats").style.display = "flex";
@@ -61,7 +65,7 @@ function renderStudents(users) {
 function resetUI() {
     document.getElementById("courseStats").style.display = "none";
     document.getElementById("studentsTable").innerHTML = `<tr><td colspan="5" class="text-center text-muted">Select a course to load data...</td></tr>`;
-    document.getElementById("sendEmailBtn").disabled = true;
+    // document.getElementById("sendEmailBtn").disabled = true;
     document.getElementById("downloadCsvBtn").classList.add("d-none");
     window.currentCSV = null;
 }
@@ -75,28 +79,28 @@ document.getElementById("downloadCsvBtn").addEventListener("click", () => {
     a.click();
 });
 
-document.getElementById("sendEmailBtn").addEventListener("click", async () => {
-    const course = document.getElementById("courseSelector").value;
-    const message = document.getElementById("emailMessage").value.trim();
+// document.getElementById("sendEmailBtn").addEventListener("click", async () => {
+//     const course = document.getElementById("courseSelector").value;
+//     const message = document.getElementById("emailMessage").value.trim();
 
-    if (!message) return alert("Email message cannot be empty!");
+//     if (!message) return alert("Email message cannot be empty!");
 
-    const res = await fetch(`https://nysc-api.willerssolutions.com/send-email-course`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ course, message })
-    });
+//     const res = await fetch(`https://nysc-api.willerssolutions.com/send-email-course`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ course, message })
+//     });
 
-    const response = await res.json();
-    alert(response.message);
-});
+//     const response = await res.json();
+//     alert(response.message);
+// });
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const targetType = document.getElementById("emailTargetType");
     const testEmailInput = document.getElementById("testEmailInput");
     const courseSelector = document.getElementById("courseSelector");
-    const sendBtn = document.getElementById("sendEmailBtn");
+    // const sendBtn = document.getElementById("sendEmailBtn");
 
     const subjectInput = document.getElementById("emailSubject");
     const messageInput = document.getElementById("emailMessage");
