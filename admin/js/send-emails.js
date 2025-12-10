@@ -172,3 +172,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+logoutButton.addEventListener('click', async function(e) {
+        // also send a request to the logout api endpoint
+    const apiUrl = "https://nysc-api.willerssolutions.com/log-out";
+
+    const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    credentials: 'include', // set credentials to include cookies
+    };
+    
+try {
+    const response = await fetch(apiUrl, requestOptions);
+    
+    if (!response.ok) {
+        // alert('an error occurred. Please try again');
+        if (!response.ok) {
+        alert('an error occurred. Please try again');
+        return;
+    }
+        return;
+      }
+        const data = await response.json();
+        localStorage.removeItem('auth')
+        window.location.href = 'auth-signin.html'
+    } finally{
+        // do nothing
+    }
+});
