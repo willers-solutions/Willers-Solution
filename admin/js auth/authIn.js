@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     get_auth_status();
-    document.getElementById('logOutButton').addEventListener('click', async function(event) {
-        event.preventDefault();
-        logout();
-    })
+    // document.getElementById('logOutButton').addEventListener('click', async function(event) {
+    //     event.preventDefault();
+    //     logout();
+    // })
 });
 
 // this is for authenticated pages
