@@ -96,79 +96,79 @@ document.getElementById("downloadCsvBtn").addEventListener("click", () => {
 // });
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const targetType = document.getElementById("emailTargetType");
-    const courseSelector = document.getElementById("courseSelector");
-    const sendBtn = document.getElementById("sendEmailBtn");
+// document.addEventListener("DOMContentLoaded", () => {
+//     const targetType = document.getElementById("emailTargetType");
+//     const courseSelector = document.getElementById("courseSelector");
+//     const sendBtn = document.getElementById("sendEmailBtn");
 
 
-    function updateButtonState() {
-        const subject = subjectInput.value.trim();
-        const message = messageInput.value.trim();
-        const target = targetType.value;
+//     function updateButtonState() {
+//         const subject = subjectInput.value.trim();
+//         const message = messageInput.value.trim();
+//         const target = targetType.value;
 
-        let canSend = subject !== "" && message !== "" && target !== "";
+//         let canSend = subject !== "" && message !== "" && target !== "";
 
-        if (target === "test") {
-            canSend = canSend && testEmailInput.value.trim() !== "";
-        } else if (target === "course") {
-            canSend = canSend && courseSelector.value !== "";
-        }
+//         if (target === "test") {
+//             canSend = canSend && testEmailInput.value.trim() !== "";
+//         } else if (target === "course") {
+//             canSend = canSend && courseSelector.value !== "";
+//         }
 
-        sendBtn.disabled = !canSend;
-    }
+//         sendBtn.disabled = !canSend;
+//     }
 
-    targetType.addEventListener("change", () => {
-        if (targetType.value === "test") {
-            // testEmailInput.classList.remove("d-none");
-            courseSelector.classList.add("d-none");
-        } else if (targetType.value === "course") {
-            courseSelector.classList.remove("d-none");
-            // testEmailInput.classList.add("d-none");
-        } else {
-            // testEmailInput.classList.add("d-none");
-            courseSelector.classList.add("d-none");
-        }
+//     targetType.addEventListener("change", () => {
+//         if (targetType.value === "test") {
+//             // testEmailInput.classList.remove("d-none");
+//             courseSelector.classList.add("d-none");
+//         } else if (targetType.value === "course") {
+//             courseSelector.classList.remove("d-none");
+//             // testEmailInput.classList.add("d-none");
+//         } else {
+//             // testEmailInput.classList.add("d-none");
+//             courseSelector.classList.add("d-none");
+//         }
 
-        updateButtonState();
-    });
+//         updateButtonState();
+//     });
 
-    [courseSelector].forEach(el => {
-        el.addEventListener("input", updateButtonState);
-    });
+//     [courseSelector].forEach(el => {
+//         el.addEventListener("input", updateButtonState);
+//     });
 
-    // sendBtn.addEventListener("click", () => {
-    //     sendBtn.disabled = true;
-    //     sendBtn.innerText = "Sending...";
+//     // sendBtn.addEventListener("click", () => {
+//     //     sendBtn.disabled = true;
+//     //     sendBtn.innerText = "Sending...";
 
-    //     const payload = {
-    //         subject: subjectInput.value.trim(),
-    //         message: messageInput.value.trim(),
-    //         type: targetType.value,
-    //         testEmail: targetType.value === "test" ? testEmailInput.value.trim() : null,
-    //         course: targetType.value === "course" ? courseSelector.value : null,
-    //     };
+//     //     const payload = {
+//     //         subject: subjectInput.value.trim(),
+//     //         message: messageInput.value.trim(),
+//     //         type: targetType.value,
+//     //         testEmail: targetType.value === "test" ? testEmailInput.value.trim() : null,
+//     //         course: targetType.value === "course" ? courseSelector.value : null,
+//     //     };
 
-    //     fetch("YOUR_API_URL_HERE/send-email", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         credentials: "include",
-    //         body: JSON.stringify(payload)
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         alert(data.message || "Email sent successfully!");
-    //         sendBtn.innerText = "Send Email";
-    //         sendBtn.disabled = false;
-    //     })
-    //     .catch(err => {
-    //         alert("Failed to send email.");
-    //         console.error(err);
-    //         sendBtn.innerText = "Send Email";
-    //         sendBtn.disabled = false;
-    //     });
-    // });
-});
+//     //     fetch("YOUR_API_URL_HERE/send-email", {
+//     //         method: "POST",
+//     //         headers: { "Content-Type": "application/json" },
+//     //         credentials: "include",
+//     //         body: JSON.stringify(payload)
+//     //     })
+//     //     .then(res => res.json())
+//     //     .then(data => {
+//     //         alert(data.message || "Email sent successfully!");
+//     //         sendBtn.innerText = "Send Email";
+//     //         sendBtn.disabled = false;
+//     //     })
+//     //     .catch(err => {
+//     //         alert("Failed to send email.");
+//     //         console.error(err);
+//     //         sendBtn.innerText = "Send Email";
+//     //         sendBtn.disabled = false;
+//     //     });
+//     // });
+// });
 
 logoutButton.addEventListener('click', async function(e) {
         // also send a request to the logout api endpoint
