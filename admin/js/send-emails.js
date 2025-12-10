@@ -98,12 +98,9 @@ document.getElementById("downloadCsvBtn").addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const targetType = document.getElementById("emailTargetType");
-    const testEmailInput = document.getElementById("testEmailInput");
     const courseSelector = document.getElementById("courseSelector");
-    // const sendBtn = document.getElementById("sendEmailBtn");
+    const sendBtn = document.getElementById("sendEmailBtn");
 
-    const subjectInput = document.getElementById("emailSubject");
-    const messageInput = document.getElementById("emailMessage");
 
     function updateButtonState() {
         const subject = subjectInput.value.trim();
@@ -123,54 +120,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     targetType.addEventListener("change", () => {
         if (targetType.value === "test") {
-            testEmailInput.classList.remove("d-none");
+            // testEmailInput.classList.remove("d-none");
             courseSelector.classList.add("d-none");
         } else if (targetType.value === "course") {
             courseSelector.classList.remove("d-none");
-            testEmailInput.classList.add("d-none");
+            // testEmailInput.classList.add("d-none");
         } else {
-            testEmailInput.classList.add("d-none");
+            // testEmailInput.classList.add("d-none");
             courseSelector.classList.add("d-none");
         }
 
         updateButtonState();
     });
 
-    [subjectInput, messageInput, testEmailInput, courseSelector].forEach(el => {
+    [courseSelector].forEach(el => {
         el.addEventListener("input", updateButtonState);
     });
 
-    sendBtn.addEventListener("click", () => {
-        sendBtn.disabled = true;
-        sendBtn.innerText = "Sending...";
+    // sendBtn.addEventListener("click", () => {
+    //     sendBtn.disabled = true;
+    //     sendBtn.innerText = "Sending...";
 
-        const payload = {
-            subject: subjectInput.value.trim(),
-            message: messageInput.value.trim(),
-            type: targetType.value,
-            testEmail: targetType.value === "test" ? testEmailInput.value.trim() : null,
-            course: targetType.value === "course" ? courseSelector.value : null,
-        };
+    //     const payload = {
+    //         subject: subjectInput.value.trim(),
+    //         message: messageInput.value.trim(),
+    //         type: targetType.value,
+    //         testEmail: targetType.value === "test" ? testEmailInput.value.trim() : null,
+    //         course: targetType.value === "course" ? courseSelector.value : null,
+    //     };
 
-        fetch("YOUR_API_URL_HERE/send-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify(payload)
-        })
-        .then(res => res.json())
-        .then(data => {
-            alert(data.message || "Email sent successfully!");
-            sendBtn.innerText = "Send Email";
-            sendBtn.disabled = false;
-        })
-        .catch(err => {
-            alert("Failed to send email.");
-            console.error(err);
-            sendBtn.innerText = "Send Email";
-            sendBtn.disabled = false;
-        });
-    });
+    //     fetch("YOUR_API_URL_HERE/send-email", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         credentials: "include",
+    //         body: JSON.stringify(payload)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         alert(data.message || "Email sent successfully!");
+    //         sendBtn.innerText = "Send Email";
+    //         sendBtn.disabled = false;
+    //     })
+    //     .catch(err => {
+    //         alert("Failed to send email.");
+    //         console.error(err);
+    //         sendBtn.innerText = "Send Email";
+    //         sendBtn.disabled = false;
+    //     });
+    // });
 });
 
 logoutButton.addEventListener('click', async function(e) {
