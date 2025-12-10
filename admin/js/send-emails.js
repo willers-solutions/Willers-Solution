@@ -15,7 +15,7 @@ document.getElementById("courseSelector").addEventListener("change", async funct
         const result = await response.json();
 
         if (result.count === 0) {
-            document.getElementById("courseData").textContent = "No students found for this course.";
+            document.getElementById("studentsTable").innerHTML = `<tr><td colspan="5" class="text-center text-muted">No students found for this course.</td></tr>`;
         } else {
             // Render Students Table
             renderStudents(result.users);
@@ -65,7 +65,6 @@ function renderStudents(users) {
 function resetUI() {
     document.getElementById("courseStats").style.display = "none";
     document.getElementById("studentsTable").innerHTML = `<tr><td colspan="5" class="text-center text-muted">Select a course to load data...</td></tr>`;
-    // document.getElementById("sendEmailBtn").disabled = true;
     document.getElementById("downloadCsvBtn").classList.add("d-none");
     window.currentCSV = null;
 }
