@@ -47,6 +47,22 @@ document.querySelector('#register-btn').addEventListener('click', async function
     }
 });
 
+const loanInput = document.getElementById("loanAmount");
+const MAX_LOAN = 500000;
+
+loanInput.addEventListener("input", function () {
+    let value = parseInt(loanInput.value, 10);
+
+    if (value < 0) {
+        loanInput.value = 0;
+    }
+
+    if (value > MAX_LOAN) {
+        loanInput.value = MAX_LOAN;
+        alert("Maximum loan amount allowed is ₦500,000");
+    }
+});
+
 // document.getElementById("loan-form").addEventListener("submit", async function (e) {
 //     e.preventDefault(); // stop page reload
 
@@ -62,9 +78,6 @@ document.querySelector('#register-btn').addEventListener('click', async function
 //         email: document.getElementById("email").value.trim(),
 //         phone: document.getElementById("phone").value.trim(),
 //         loanAmount: document.getElementById("loanAmount").value.trim(),
-//         loanPurpose: document.getElementById("loanPurpose").value.trim(),
-//         employmentStatus: document.getElementById("employmentStatus").value.trim(),
-//         monthlyIncome: document.getElementById("monthlyIncome").value.trim(),
 //     };
 
 //     try {
