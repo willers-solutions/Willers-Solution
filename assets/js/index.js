@@ -63,42 +63,42 @@ loanInput.addEventListener("input", function () {
     }
 });
 
-document.getElementById("loan-form").addEventListener("submit", async function (e) {
-    e.preventDefault(); // stop page reload
+// document.getElementById("loan-form").addEventListener("submit", async function (e) {
+//     e.preventDefault(); // stop page reload
 
-    const messageBox = document.getElementById("loan-message");
-    messageBox.classList.remove("hidden");
-    messageBox.textContent = "Submitting your application...";
-    messageBox.style.color = "#333";
+//     const messageBox = document.getElementById("loan-message");
+//     messageBox.classList.remove("hidden");
+//     messageBox.textContent = "Submitting your application...";
+//     messageBox.style.color = "#333";
 
-    // Collect form data
-    const loanData = {
-        fullName: document.getElementById("fullName").value.trim(),
-        otherNames: document.getElementById("referenceCode").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        loanAmount: document.getElementById("loanAmount").value.trim(),
-    };
+//     // Collect form data
+//     const loanData = {
+//         fullName: document.getElementById("fullName").value.trim(),
+//         otherNames: document.getElementById("referenceCode").value.trim(),
+//         email: document.getElementById("email").value.trim(),
+//         phone: document.getElementById("phone").value.trim(),
+//         loanAmount: document.getElementById("loanAmount").value.trim(),
+//     };
 
-    try {
-        const response = await fetch("https://nysc-api.willerssolutions.com/loan-apply", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(loanData),
-        });
+//     try {
+//         const response = await fetch("https://nysc-api.willerssolutions.com/loan-apply", {
+//             method: "POST",
+//             headers: {"Content-Type": "application/json"},
+//             body: JSON.stringify(loanData),
+//         });
 
-        const result = await response.json();
+//         const result = await response.json();
 
-        if (response.ok) {
-            messageBox.textContent = "Your loan application has been submitted successfully!";
-            messageBox.style.color = "green";
-            document.getElementById("loan-form").reset();
-        } else {
-            messageBox.textContent = result.message || "Error: Unable to submit your application.";
-            messageBox.style.color = "red";
-        }
-    } catch (error) {
-        messageBox.textContent = "Network error! Please try again.";
-        messageBox.style.color = "red";
-    }
-});
+//         if (response.ok) {
+//             messageBox.textContent = "Your loan application has been submitted successfully!";
+//             messageBox.style.color = "green";
+//             document.getElementById("loan-form").reset();
+//         } else {
+//             messageBox.textContent = result.message || "Error: Unable to submit your application.";
+//             messageBox.style.color = "red";
+//         }
+//     } catch (error) {
+//         messageBox.textContent = "Network error! Please try again.";
+//         messageBox.style.color = "red";
+//     }
+// });
