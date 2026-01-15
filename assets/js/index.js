@@ -1,12 +1,17 @@
 document.querySelector('#register-btn').addEventListener('click', async function (e) {
     e.preventDefault();
 
+    const referralSource = document.getElementById("referralSource").value;
+    const otherReferral = document.getElementById("otherReferral").value.trim();
+
     const formData = {
         surn_name: document.getElementById("surname").value.trim(),
         other_name: document.getElementById("otherNames").value.trim(),
         email: document.getElementById("email").value.trim(),
         phone: document.getElementById("phone").value.trim(),
         course: document.getElementById("skillHub").value,
+        referral_source: referralSource,
+        referral_other: referralSource === "Others" ? otherReferral : null,
         amount_paid: 15000,
     };
 
@@ -31,19 +36,28 @@ document.querySelector('#register-btn').addEventListener('click', async function
 
         const data = await response.json();
 
-        // Save the course ID
         localStorage.setItem("OrderID", String(data.course_id));
-
-        // Redirect to Paystack
         window.location.href = data.success.data.authorization_url;
 
     } catch (error) {
         console.error(error);
-
-        // Restore button so user can try again
         button.textContent = "Pay ₦15,000 One-Time Fee";
         button.disabled = false;
         button.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+});
+
+const referralSelect = document.getElementById('referralSource');
+const otherReferralInput = document.getElementById('otherReferral');
+
+referralSelect.addEventListener('change', function () {
+    if (this.value === 'Others') {
+        otherReferralInput.classList.remove('hidden');
+        otherReferralInput.required = true;
+    } else {
+        otherReferralInput.classList.add('hidden');
+        otherReferralInput.required = false;
+        otherReferralInput.value = '';
     }
 });
 
