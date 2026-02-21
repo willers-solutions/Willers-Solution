@@ -61,21 +61,54 @@ referralSelect.addEventListener('change', function () {
     }
 });
 
-const loanInput = document.getElementById("loanAmount");
-const MAX_LOAN = 500000;
+document.addEventListener("DOMContentLoaded", function () {
 
-loanInput.addEventListener("input", function () {
-    let value = parseInt(loanInput.value, 10);
+  const images = [
+    "hero-1.png",
+    "hero-2.png",
+    "hero-3.png",
+    "hero-4.png"
+  ];
 
-    if (value < 0) {
-        loanInput.value = 0;
-    }
+  const heroImage = document.getElementById("heroImage");
+  let index = 0;
 
-    if (value > MAX_LOAN) {
-        loanInput.value = MAX_LOAN;
-        alert("Maximum loan amount allowed is ₦500,000");
-    }
+  setInterval(() => {
+
+    // Fade out
+    heroImage.classList.remove("opacity-100");
+    heroImage.classList.add("opacity-0");
+
+    setTimeout(() => {
+      // Change image
+      index = (index + 1) % images.length;
+      heroImage.src = images[index];
+
+      // Fade in
+      heroImage.classList.remove("opacity-0");
+      heroImage.classList.add("opacity-100");
+
+    }, 500); // Half of transition duration
+
+  }, 3000); // Change every 3 seconds
+
 });
+
+// const loanInput = document.getElementById("loanAmount");
+// const MAX_LOAN = 500000;
+
+// loanInput.addEventListener("input", function () {
+//     let value = parseInt(loanInput.value, 10);
+
+//     if (value < 0) {
+//         loanInput.value = 0;
+//     }
+
+//     if (value > MAX_LOAN) {
+//         loanInput.value = MAX_LOAN;
+//         alert("Maximum loan amount allowed is ₦500,000");
+//     }
+// });
 
 // document.getElementById("loan-form").addEventListener("submit", async function (e) {
 //     e.preventDefault(); // stop page reload
