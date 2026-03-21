@@ -1,41 +1,77 @@
 async function loadTransactionSummary() {
-    // Get bookingID from the URL
-    const bookingID = new URLSearchParams(window.location.search).get("reference");
+    // Get reference from URL
+    const reference = new URLSearchParams(window.location.search).get("reference");
 
-    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?reference=' + bookingID;
+    if (!reference) {
+        console.error("No reference found in URL");
+        return;
+    }
+
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?reference=' + reference;
     history.pushState({ path: newUrl }, '', newUrl);
 
     try {
-        // Make the request
-        const response = await fetch(`https://nysc-api.willerssolutions.com/get-course-by-reference/${bookingID}`);
+        const response = await fetch(`https://nysc-api.willerssolutions.com/get-course-by-reference/${reference}`);
 
         if (!response.ok) {
             throw new Error("Failed to fetch transaction details");
         }
 
         const data = await response.json();
+        const d = data.success;
 
-        // Combine full name
-        const fullName = `${data.success.other_name || ""} ${data.success.surn_name || ""}`.trim();
+        // Full name
+        const fullName = `${d.other_name || ""} ${d.surn_name || ""}`.trim();
 
-        // Render values
-        document.getElementById("summary-name").textContent = fullName || "N/A";
-        document.getElementById("summary-email").textContent = data.success.email || "N/A";
-        document.getElementById("summary-phone").textContent = data.success.phone || "N/A";
-        document.getElementById("summary-skill").textContent = data.success.course || "N/A";
-        renderStatusBadge(data.success.payment_status);
+        // Basic fields
+        document.getElementById("summary-name").textContent  = fullName || "N/A";
+        document.getElementById("summary-email").textContent = d.email  || "N/A";
+        document.getElementById("summary-phone").textContent = d.phone  || "N/A";
+        document.getElementById("summary-skill").textContent = d.course || "N/A";
+        document.getElementById("summary-tx").textContent    = "WIL-" + (d.ID || reference);
+        document.getElementById("summary-date").textContent  = formatDate(d.CreatedAt);
 
-        // Amount
-        document.getElementById("summary-amount").textContent =
-            `₦${Number(data.success.amount_paid).toLocaleString()}`;
+        renderStatusBadge(d.payment_status);
 
-        // Transaction ID
-        document.getElementById("summary-tx").textContent =
-            "WIL-"+data.success.ID || bookingID;
+        // Payment Tier & Installment Info
+        const tier       = d.payment_tier       || "one-time";
+        const totalDue   = d.total_amount_due   || 15000;
+        const amountPaid = d.amount_paid        || 0;
+        const balance    = d.balance_remaining  !== undefined ? d.balance_remaining : (totalDue - amountPaid);
+        const instStatus = d.installment_status || (balance <= 0 ? "completed" : "in-progress");
 
-        // Date
+        document.getElementById("summary-amount").textContent = `₦${Number(amountPaid).toLocaleString()}`;
 
-        document.getElementById("summary-date").textContent = formatDate(data.success.CreatedAt);
+        const tierEl = document.getElementById("summary-tier");
+        if (tierEl) tierEl.textContent = tier === "installment" ? "Installment Plan (₦6,000 × 3 months)" : "One-Time Payment";
+
+        const totalEl = document.getElementById("summary-total");
+        if (totalEl) totalEl.textContent = `₦${Number(totalDue).toLocaleString()}`;
+
+        const balanceRow = document.getElementById("balance-row");
+        const balanceEl  = document.getElementById("summary-balance");
+        if (balanceRow && balanceEl) {
+            if (tier === "installment") {
+                balanceRow.classList.remove("hidden");
+                balanceEl.textContent = `₦${Number(balance).toLocaleString()}`;
+                balanceEl.className = balance > 0 ? "text-red-600 font-bold" : "text-green-600 font-bold";
+            } else {
+                balanceRow.classList.add("hidden");
+            }
+        }
+
+        const instRow = document.getElementById("installment-status-row");
+        const instEl  = document.getElementById("summary-installment-status");
+        if (instRow && instEl) {
+            if (tier === "installment") {
+                instRow.classList.remove("hidden");
+                instEl.textContent = instStatus === "completed" ? "Fully Paid" : "In Progress";
+                instEl.className   = "font-bold px-3 py-1 rounded-lg text-white " +
+                    (instStatus === "completed" ? "bg-green-500" : "bg-yellow-500");
+            } else {
+                instRow.classList.add("hidden");
+            }
+        }
 
     } catch (error) {
         console.error("Error loading course:", error);
@@ -61,16 +97,16 @@ function renderStatusBadge(status) {
     if (cleanStatus === "successful" || cleanStatus === "success") {
         statusEl.textContent = "Successful";
         statusEl.classList.add("bg-green-500");
-    } 
-    else if (cleanStatus === "pending") {
+    } else if (cleanStatus === "partial") {
+        statusEl.textContent = "Partial Payment";
+        statusEl.classList.add("bg-blue-500");
+    } else if (cleanStatus === "pending") {
         statusEl.textContent = "Pending";
         statusEl.classList.add("bg-yellow-500");
-    } 
-    else if (cleanStatus === "failed" || cleanStatus === "fail") {
+    } else if (cleanStatus === "failed" || cleanStatus === "fail") {
         statusEl.textContent = "Failed";
         statusEl.classList.add("bg-red-500");
-    } 
-    else {
+    } else {
         statusEl.textContent = "Unknown";
         statusEl.classList.add("bg-gray-500");
     }
