@@ -68,7 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
     "hero-2.png",
     "hero-3.png",
     "hero-4.png",
-    "hero-5.png"
+    "hero-5.png",
+    "hero-6.png",
+    "hero-7.png",
+    "hero-8.png",
+    "hero-9.png"
   ];
 
   // 🔥 Preload images (VERY IMPORTANT)
