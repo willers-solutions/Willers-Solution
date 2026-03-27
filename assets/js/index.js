@@ -71,27 +71,37 @@ document.addEventListener("DOMContentLoaded", function () {
     "hero-5.png"
   ];
 
+  // 🔥 Preload images (VERY IMPORTANT)
+  images.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
   const heroImage = document.getElementById("heroImage");
   let index = 0;
 
   setInterval(() => {
 
     // Fade out
-    heroImage.classList.remove("opacity-100");
-    heroImage.classList.add("opacity-0");
+    heroImage.classList.replace("opacity-100", "opacity-0");
 
     setTimeout(() => {
-      // Change image
       index = (index + 1) % images.length;
-      heroImage.src = images[index];
 
-      // Fade in
-      heroImage.classList.remove("opacity-0");
-      heroImage.classList.add("opacity-100");
+      // Wait until next image is ready before swapping
+      const nextImg = new Image();
+      nextImg.src = images[index];
 
-    }, 500); // Half of transition duration
+      nextImg.onload = () => {
+        heroImage.src = images[index];
 
-  }, 3000); // Change every 3 seconds
+        // Fade in
+        heroImage.classList.replace("opacity-0", "opacity-100");
+      };
+
+    }, 700); // match transition duration exactly
+
+  }, 3000);
 
 });
 
