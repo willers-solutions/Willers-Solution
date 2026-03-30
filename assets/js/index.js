@@ -1,3 +1,30 @@
+let paymentTier = "";
+function selectPaymentPlan(payment_type) {
+  if (payment_type === "one-time") {
+    paymentTier = "one-time";
+    document.getElementById("one-time").classList.add("border-blue-500", "bg-blue-50");
+    document.getElementById("installments").classList.remove("border-blue-500", "bg-blue-50");
+  } else if (payment_type === "installments") {
+    paymentTier = "installments";
+    document.getElementById("installments").classList.add("border-blue-500", "bg-blue-50");
+    document.getElementById("one-time").classList.remove("border-blue-500", "bg-blue-50");
+  }
+}
+
+function getSelectedAudience() {
+    // Get the select element by its ID
+    const select = document.getElementById("audienceCategory");
+    
+    // Get the value of the selected option
+    const selectedValue = select.value;
+
+    // Optional: get the text of the selected option
+    const selectedText = select.options[select.selectedIndex].text;
+
+    // Return both or just the value depending on your need
+    return { value: selectedValue, text: selectedText };
+}
+
 document.querySelector('#register-btn').addEventListener('click', async function (e) {
     e.preventDefault();
 
@@ -13,6 +40,8 @@ document.querySelector('#register-btn').addEventListener('click', async function
         referral_source: referralSource,
         referral_other: referralSource === "Others" ? otherReferral : null,
         amount_paid: 15000,
+        payment_tier: paymentTier,
+        audience_category: getSelectedAudience(),
     };
 
     const button = document.getElementById('register-btn');
