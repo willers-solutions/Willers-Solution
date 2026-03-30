@@ -66,7 +66,7 @@ document.querySelector('#register-btn').addEventListener('click', async function
         referral_other: referralSource === "Others" ? otherReferral : null,
         amount_paid: 15000,
         payment_tier: paymentTier,
-        audience_category: getSelectedAudience(),
+        audience_category: getSelectedAudience().value,
     };
 
     const button = document.getElementById('register-btn');
