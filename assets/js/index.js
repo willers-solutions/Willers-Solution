@@ -1,14 +1,39 @@
 let paymentTier = "";
+
 function selectPaymentPlan(payment_type) {
-  if (payment_type === "one-time") {
-    paymentTier = "one-time";
-    document.getElementById("one-time").classList.add("border-blue-500", "bg-blue-50");
-    document.getElementById("installments").classList.remove("border-blue-500", "bg-blue-50");
-  } else if (payment_type === "installments") {
-    paymentTier = "installments";
-    document.getElementById("installments").classList.add("border-blue-500", "bg-blue-50");
-    document.getElementById("one-time").classList.remove("border-blue-500", "bg-blue-50");
-  }
+    // Update global selected plan
+    paymentTier = payment_type;
+
+    // Elements
+    const oneTimeCard = document.getElementById("plan-onetime");
+    const installmentCard = document.getElementById("plan-installment");
+    const badgeOneTime = document.getElementById("selected-badge-onetime");
+    const badgeInstallment = document.getElementById("selected-badge-installment");
+    const registerBtn = document.getElementById("register-btn");
+
+    if (payment_type === "one-time") {
+        // Highlight one-time
+        oneTimeCard.classList.add("border-blue-500", "bg-blue-50");
+        installmentCard.classList.remove("border-blue-500", "bg-blue-50");
+
+        // Show badges
+        badgeOneTime.classList.remove("hidden");
+        badgeInstallment.classList.add("hidden");
+    } else if (payment_type === "installment") {
+        // Highlight installment
+        installmentCard.classList.add("border-blue-500", "bg-blue-50");
+        oneTimeCard.classList.remove("border-blue-500", "bg-blue-50");
+
+        // Show badges
+        badgeInstallment.classList.remove("hidden");
+        badgeOneTime.classList.add("hidden");
+    }
+
+    // Enable the button and update its text
+    registerBtn.disabled = false;
+    registerBtn.classList.remove("bg-gray-300", "text-gray-500", "cursor-not-allowed");
+    registerBtn.classList.add("bg-brand-accent", "text-white", "cursor-pointer");
+    registerBtn.textContent = "Proceed with " + (payment_type === "one-time" ? "One-Time Payment" : "Installment Plan");
 }
 
 function getSelectedAudience() {
