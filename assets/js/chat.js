@@ -2,10 +2,6 @@
 // Initialize Lucide icons on script load
 lucide.createIcons();
 
-// Gemini API Configuration
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=";
-const apiKey = "IzaSyCjemJLvJQr19-nBQt4yaqmaFJ25U0r_a4"; // API Key placeholder
-
 // Global variables to hold registration data
 let registeredUserData = {};
 
